@@ -65,6 +65,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="XRU-Mp-Y2J">
                         <barButtonItem key="rightBarButtonItem" title="Logout" id="TdY-Co-VNM">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="logout:" destination="Vq6-bs-I5V" id="DLZ-px-iv5"/>
                             </connections>
@@ -83,6 +84,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="MyS-2L-TLG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.40000000596046448" green="0.40000000596046448" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

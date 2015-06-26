@@ -12,8 +12,11 @@ import SimpleAuth
 import SwiftyJSON
 import Locksmith
 
-private let kKeychainAccountName = "Instagram"
-private let kKeychainKeyName = "accessToken"
+private let CLIENT_ID = "b9b36a40f64440a29ae5f532d8780069"
+private let REDIRECT_URI = "http://nstgrm.awwapps.com"
+
+private let keychainAccountName = "Instagram"
+private let keychainKeyName = "accessToken"
 
 class TableViewController: UITableViewController {
 	
@@ -22,6 +25,7 @@ class TableViewController: UITableViewController {
 	var nextPageURL: String?
 	var isLoadingData = false
 	
+	// MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,9 +33,40 @@ class TableViewController: UITableViewController {
 		refreshControl = UIRefreshControl()
 		refreshControl?.addTarget(self, action: "refreshData", forControlEvents: UIControlEvents.ValueChanged)
 		
-		let (dictionary, error) = Locksmith.loadDataForUserAccount(kKeychainAccountName)
+		getAccessTokenFromKeychain()
+	}
+	
+	override func didReceiveMemoryWarning() {
+		super.didReceiveMemoryWarning()
+		// Dispose of any resources that can be recreated.
+	}
+	
+	// MARK: - Table view data source
+	
+	override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+		return 1
+	}
+	
+	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return data.count ?? 0
+	}
+	
+	
+	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! TableViewCell
+		cell.photoInfo = data[indexPath.row]
+		if indexPath.row == data.count - 1 && isLoadingData == false {
+			loadMorePhotos()
+		}
+		return cell
+	}
+	
+	// MARK: - Get Access to API and Fetching Data Stuff
+	
+	func getAccessTokenFromKeychain() {
+		let (dictionary, error) = Locksmith.loadDataForUserAccount(keychainAccountName)
 		if error == nil {
-			accessToken = dictionary?.valueForKey(kKeychainKeyName) as? String
+			accessToken = dictionary?.valueForKey(keychainKeyName) as? String
 			if accessToken != nil {
 				loadPhotos()
 			} else {
@@ -44,8 +79,8 @@ class TableViewController: UITableViewController {
 	
 	func instagramOAuth() {
 		SimpleAuth.configuration()["instagram"] = [
-			"client_id" : "b9b36a40f64440a29ae5f532d8780069",
-			SimpleAuthRedirectURIKey : "http://nstgrm.awwapps.com"
+			"client_id" : CLIENT_ID,
+			SimpleAuthRedirectURIKey : REDIRECT_URI
 		]
 		
 		SimpleAuth.authorize("instagram", completion: { responseObject, error in
@@ -53,7 +88,7 @@ class TableViewController: UITableViewController {
 				let json = JSON(responseObject)
 				self.accessToken = json["credentials"]["token"].string!
 				if self.accessToken != nil {
-					Locksmith.saveData([kKeychainKeyName: self.accessToken!], forUserAccount: kKeychainAccountName)
+					Locksmith.saveData([keychainKeyName: self.accessToken!], forUserAccount: keychainAccountName)
 					self.loadPhotos()
 				}
 			}
@@ -61,7 +96,7 @@ class TableViewController: UITableViewController {
 	}
 	
 	@IBAction func logout(sender: UIBarButtonItem) {
-		Locksmith.deleteDataForUserAccount(kKeychainAccountName)
+		Locksmith.deleteDataForUserAccount(keychainAccountName)
 		data = []
 		tableView.reloadData()
 		accessToken = nil
@@ -115,75 +150,5 @@ class TableViewController: UITableViewController {
 			loadPhotos(url: nextPageURL)
 		}
 	}
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    // MARK: - Table view data source
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count ?? 0
-    }
-
-
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! TableViewCell
-		cell.photoInfo = data[indexPath.row]
-		if indexPath.row == data.count - 1 && isLoadingData == false {
-			loadMorePhotos()
-		}
-		return cell
-    }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
