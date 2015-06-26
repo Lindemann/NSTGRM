@@ -1,0 +1,39 @@
+PODS:
+  - Alamofire (1.2.3)
+  - CMDQueryStringSerialization (0.4.1):
+    - ISO8601
+  - HanekeSwift (0.9.1)
+  - ISO8601 (0.3.0)
+  - Locksmith (1.2.2)
+  - ReactiveCocoa (2.5):
+    - ReactiveCocoa/UI (= 2.5)
+  - ReactiveCocoa/Core (2.5):
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/no-arc (2.5)
+  - ReactiveCocoa/UI (2.5):
+    - ReactiveCocoa/Core
+  - SimpleAuth/Core (0.3.9):
+    - CMDQueryStringSerialization
+    - ReactiveCocoa
+  - SimpleAuth/Instagram (0.3.9):
+    - SimpleAuth/Core
+  - SwiftyJSON (2.2.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 1.2)
+  - HanekeSwift
+  - Locksmith
+  - SimpleAuth/Instagram
+  - SwiftyJSON (~> 2.2.0)
+
+SPEC CHECKSUMS:
+  Alamofire: 5550bf0b575ed1a4bf9be572f9463e1015cc169e
+  CMDQueryStringSerialization: 4bb0a2f5e7d8d8678d911d88072274952cbef4e5
+  HanekeSwift: 50d37bfbc4432edc649167e538c259feccb4a2bb
+  ISO8601: 8d8a22d5edf0554a1cf75bac028c76c1dc0ffaef
+  Locksmith: c84c10bf23f99e6d04703dba65065dc38b038d88
+  ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
+  SimpleAuth: bc7d594f90711a7e6ef7624dce5aa8c8b09770ab
+  SwiftyJSON: 0b3e6c07af17ff745e77e8e9984097b55c956e5c
+
+COCOAPODS: 0.37.2

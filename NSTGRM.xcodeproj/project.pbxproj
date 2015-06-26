@@ -8,11 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		82181F181B38CD9700A6E413 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82181F171B38CD9700A6E413 /* AppDelegate.swift */; };
-		82181F1A1B38CD9700A6E413 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82181F191B38CD9700A6E413 /* ViewController.swift */; };
 		82181F1D1B38CD9800A6E413 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82181F1B1B38CD9800A6E413 /* Main.storyboard */; };
 		82181F1F1B38CD9800A6E413 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82181F1E1B38CD9800A6E413 /* Images.xcassets */; };
 		82181F221B38CD9800A6E413 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82181F201B38CD9800A6E413 /* LaunchScreen.xib */; };
 		82181F2E1B38CD9800A6E413 /* NSTGRMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82181F2D1B38CD9800A6E413 /* NSTGRMTests.swift */; };
+		822E8BDC1B39F3AD006CE554 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822E8BDB1B39F3AD006CE554 /* TableViewController.swift */; };
+		822E8BDE1B3A2806006CE554 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 822E8BDD1B3A2806006CE554 /* TableViewCell.swift */; };
+		E011CAC5892EA29F1D099867 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC2A1842B4A87728F3E77C95 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,16 +28,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3EA7FACDAE630B3FBD1089FB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		82181F121B38CD9700A6E413 /* NSTGRM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSTGRM.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82181F161B38CD9700A6E413 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82181F171B38CD9700A6E413 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		82181F191B38CD9700A6E413 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		82181F1C1B38CD9800A6E413 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		82181F1E1B38CD9800A6E413 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		82181F211B38CD9800A6E413 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		82181F271B38CD9800A6E413 /* NSTGRMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NSTGRMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		82181F2C1B38CD9800A6E413 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82181F2D1B38CD9800A6E413 /* NSTGRMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSTGRMTests.swift; sourceTree = "<group>"; };
+		82289A381B3D1464007E01C4 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		822E8BDB1B39F3AD006CE554 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		822E8BDD1B3A2806006CE554 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		83DC396D767C10B2B7B78149 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		EC2A1842B4A87728F3E77C95 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E011CAC5892EA29F1D099867 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,12 +64,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D85C5753E4F2956CAC1DA5D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				83DC396D767C10B2B7B78149 /* Pods.debug.xcconfig */,
+				3EA7FACDAE630B3FBD1089FB /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		82181F091B38CD9700A6E413 = {
 			isa = PBXGroup;
 			children = (
 				82181F141B38CD9700A6E413 /* NSTGRM */,
 				82181F2A1B38CD9800A6E413 /* NSTGRMTests */,
 				82181F131B38CD9700A6E413 /* Products */,
+				0D85C5753E4F2956CAC1DA5D /* Pods */,
+				EECA251E0330249909BE3ABE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,11 +96,9 @@
 		82181F141B38CD9700A6E413 /* NSTGRM */ = {
 			isa = PBXGroup;
 			children = (
-				82181F171B38CD9700A6E413 /* AppDelegate.swift */,
-				82181F191B38CD9700A6E413 /* ViewController.swift */,
+				822E8BDB1B39F3AD006CE554 /* TableViewController.swift */,
+				822E8BDD1B3A2806006CE554 /* TableViewCell.swift */,
 				82181F1B1B38CD9800A6E413 /* Main.storyboard */,
-				82181F1E1B38CD9800A6E413 /* Images.xcassets */,
-				82181F201B38CD9800A6E413 /* LaunchScreen.xib */,
 				82181F151B38CD9700A6E413 /* Supporting Files */,
 			);
 			path = NSTGRM;
@@ -90,6 +107,9 @@
 		82181F151B38CD9700A6E413 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				82181F171B38CD9700A6E413 /* AppDelegate.swift */,
+				82181F1E1B38CD9800A6E413 /* Images.xcassets */,
+				82181F201B38CD9800A6E413 /* LaunchScreen.xib */,
 				82181F161B38CD9700A6E413 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -112,6 +132,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		EECA251E0330249909BE3ABE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				82289A381B3D1464007E01C4 /* Security.framework */,
+				EC2A1842B4A87728F3E77C95 /* Pods.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -119,9 +148,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 82181F311B38CD9800A6E413 /* Build configuration list for PBXNativeTarget "NSTGRM" */;
 			buildPhases = (
+				9E4658B112A88600FDB8EBDB /* Check Pods Manifest.lock */,
 				82181F0E1B38CD9700A6E413 /* Sources */,
 				82181F0F1B38CD9700A6E413 /* Frameworks */,
 				82181F101B38CD9700A6E413 /* Resources */,
+				F7C868443A317F6B1CE61A89 /* Embed Pods Frameworks */,
+				FEACA0B18C2FE9462E495278 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -156,11 +188,13 @@
 		82181F0A1B38CD9700A6E413 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = Lindemann;
 				TargetAttributes = {
 					82181F111B38CD9700A6E413 = {
 						CreatedOnToolsVersion = 6.3.2;
+						DevelopmentTeam = 8FCW82DM53;
 					};
 					82181F261B38CD9800A6E413 = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -207,13 +241,62 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		9E4658B112A88600FDB8EBDB /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F7C868443A317F6B1CE61A89 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FEACA0B18C2FE9462E495278 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		82181F0E1B38CD9700A6E413 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				82181F1A1B38CD9700A6E413 /* ViewController.swift in Sources */,
+				822E8BDE1B3A2806006CE554 /* TableViewCell.swift in Sources */,
 				82181F181B38CD9700A6E413 /* AppDelegate.swift in Sources */,
+				822E8BDC1B39F3AD006CE554 /* TableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,8 +423,10 @@
 		};
 		82181F321B38CD9800A6E413 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 83DC396D767C10B2B7B78149 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = NSTGRM/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -350,8 +435,10 @@
 		};
 		82181F331B38CD9800A6E413 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3EA7FACDAE630B3FBD1089FB /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = NSTGRM/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -411,6 +498,7 @@
 				82181F331B38CD9800A6E413 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		82181F341B38CD9800A6E413 /* Build configuration list for PBXNativeTarget "NSTGRMTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +507,7 @@
 				82181F361B38CD9800A6E413 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
