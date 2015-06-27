@@ -32,6 +32,9 @@ class TableViewController: UITableViewController {
 		
 		refreshControl = UIRefreshControl()
 		refreshControl?.addTarget(self, action: "refreshData", forControlEvents: UIControlEvents.ValueChanged)
+
+		tableView.rowHeight = tableView.bounds.width / 2
+		tableView.separatorColor = UIColor.clearColor()
 		
 		getAccessTokenFromKeychain()
 	}
@@ -107,7 +110,7 @@ class TableViewController: UITableViewController {
 	}
 	
 	func refreshData() {
-		loadPhotos { (success) -> Void in
+		loadPhotos { (success) -> () in
 			if success {
 				self.data = []
 			}
@@ -117,8 +120,8 @@ class TableViewController: UITableViewController {
 	func loadPhotos(var url: String? = nil, completionHandler: ((success: Bool) -> ()) = { (success) -> () in }) {
 		if url == nil {
 			if accessToken != nil {
-				url = "https://api.instagram.com/v1/tags/cat/media/recent?access_token=\(accessToken!)"
-				// url = "https://api.instagram.com/v1/users/\(userID!)/media/recent/?access_token=\(accessToken!)"
+				url = "https://api.instagram.com/v1/tags/mountain/media/recent?access_token=\(accessToken!)"
+				//url = "https://api.instagram.com/v1/users/\(userID!)/media/recent/?access_token=\(accessToken!)"
 			} else {
 				instagramOAuth()
 				self.refreshControl?.endRefreshing()
