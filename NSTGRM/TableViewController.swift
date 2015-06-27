@@ -16,12 +16,12 @@ private let CLIENT_ID = "b9b36a40f64440a29ae5f532d8780069"
 private let REDIRECT_URI = "http://nstgrm.awwapps.com"
 
 private let keychainAccountName = "Instagram"
-private let keychainKeyName = "accessToken"
 
 class TableViewController: UITableViewController {
 	
 	var data: [JSON] = []
 	var accessToken: String?
+	var userID: String?
 	var nextPageURL: String?
 	var isLoadingData = false
 	
@@ -66,7 +66,8 @@ class TableViewController: UITableViewController {
 	func getAccessTokenFromKeychain() {
 		let (dictionary, error) = Locksmith.loadDataForUserAccount(keychainAccountName)
 		if error == nil {
-			accessToken = dictionary?.valueForKey(keychainKeyName) as? String
+			userID = dictionary?.allKeys[0] as? String
+			accessToken = dictionary?.valueForKey(userID!) as? String
 			if accessToken != nil {
 				loadPhotos()
 			} else {
@@ -86,9 +87,11 @@ class TableViewController: UITableViewController {
 		SimpleAuth.authorize("instagram", completion: { responseObject, error in
 			if responseObject != nil {
 				let json = JSON(responseObject)
+				// println(json)
 				self.accessToken = json["credentials"]["token"].string!
-				if self.accessToken != nil {
-					Locksmith.saveData([keychainKeyName: self.accessToken!], forUserAccount: keychainAccountName)
+				self.userID = json["uid"].string!
+				if self.accessToken != nil && self.userID != nil {
+					Locksmith.saveData([self.userID!: self.accessToken!], forUserAccount: keychainAccountName)
 					self.loadPhotos()
 				}
 			}
@@ -115,6 +118,7 @@ class TableViewController: UITableViewController {
 		if url == nil {
 			if accessToken != nil {
 				url = "https://api.instagram.com/v1/tags/cat/media/recent?access_token=\(accessToken!)"
+				// url = "https://api.instagram.com/v1/users/\(userID!)/media/recent/?access_token=\(accessToken!)"
 			} else {
 				instagramOAuth()
 				self.refreshControl?.endRefreshing()
