@@ -120,7 +120,8 @@ class TableViewController: UITableViewController {
 	func loadPhotos(var url: String? = nil, completionHandler: ((success: Bool) -> ()) = { (success) -> () in }) {
 		if url == nil {
 			if accessToken != nil {
-				url = "https://api.instagram.com/v1/tags/mountain/media/recent?access_token=\(accessToken!)"
+				//url = "https://api.instagram.com/v1/tags/mountain/media/recent?access_token=\(accessToken!)"
+				url = "https://api.instagram.com/v1/users/342262/media/recent/?access_token=\(accessToken!)"
 				//url = "https://api.instagram.com/v1/users/\(userID!)/media/recent/?access_token=\(accessToken!)"
 			} else {
 				instagramOAuth()
