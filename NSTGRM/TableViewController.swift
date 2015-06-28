@@ -27,11 +27,24 @@ class TableViewController: UITableViewController {
 	
 	// MARK: - Lifecycle
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+	override func viewDidLoad() {
+		super.viewDidLoad()
 		
+		// Add pull to refresh
 		refreshControl = UIRefreshControl()
 		refreshControl?.addTarget(self, action: "refreshData", forControlEvents: UIControlEvents.ValueChanged)
+		
+		// Define TableViewCell height
+		tableView.rowHeight = tableView.bounds.width / 2
+		tableView.separatorColor = UIColor.clearColor()
+		
+		// Add icon to NavBar
+		var titleView : UIImageView
+		let maxSize: CGFloat = 26
+		titleView = UIImageView(frame:CGRectMake(0, 0, maxSize, maxSize))
+		titleView.contentMode = .ScaleAspectFit
+		titleView.image = UIImage(named: "camera")
+		self.navigationItem.titleView = titleView
 		
 		getAccessTokenFromKeychain()
 	}
@@ -54,10 +67,20 @@ class TableViewController: UITableViewController {
 	
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! TableViewCell
-		cell.photoInfo = data[indexPath.row]
+		
+		if let urlString = data[indexPath.row]["images"]["standard_resolution"]["url"].string {
+			let url = NSURL(string: urlString)
+			cell.imageView!.frame = CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height)
+			cell.imageView!.hnk_setImageFromURL(url!)
+		}
+		
+		let likes = data[indexPath.row]["likes"]["count"]
+		cell.likesView.likes = likes.int!
+		
 		if indexPath.row == data.count - 1 && isLoadingData == false {
 			loadMorePhotos()
 		}
+		
 		return cell
 	}
 	
@@ -107,7 +130,7 @@ class TableViewController: UITableViewController {
 	}
 	
 	func refreshData() {
-		loadPhotos { (success) -> Void in
+		loadPhotos { (success) -> () in
 			if success {
 				self.data = []
 			}
@@ -117,8 +140,9 @@ class TableViewController: UITableViewController {
 	func loadPhotos(var url: String? = nil, completionHandler: ((success: Bool) -> ()) = { (success) -> () in }) {
 		if url == nil {
 			if accessToken != nil {
-				url = "https://api.instagram.com/v1/tags/cat/media/recent?access_token=\(accessToken!)"
-				// url = "https://api.instagram.com/v1/users/\(userID!)/media/recent/?access_token=\(accessToken!)"
+				//url = "https://api.instagram.com/v1/tags/cat/media/recent?access_token=\(accessToken!)"
+				url = "https://api.instagram.com/v1/users/342262/media/recent/?access_token=\(accessToken!)"
+				//url = "https://api.instagram.com/v1/users/\(userID!)/media/recent/?access_token=\(accessToken!)"
 			} else {
 				instagramOAuth()
 				self.refreshControl?.endRefreshing()

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2C6EBF1D9D0F8BB4F4A36A0B"
+               BlueprintIdentifier = "9D50E0B5F1662C2CE958EE73"
                BuildableName = "SimpleAuth.framework"
                BlueprintName = "Pods-SimpleAuth"
                ReferencedContainer = "container:Pods.xcodeproj">
