@@ -70,8 +70,8 @@ class TableViewController: UITableViewController {
 		
 		if let urlString = data[indexPath.row]["images"]["standard_resolution"]["url"].string {
 			let url = NSURL(string: urlString)
-			cell.photoImageView.frame = CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height)
-			cell.photoImageView.hnk_setImageFromURL(url!)
+			cell.imageView!.frame = CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height)
+			cell.imageView!.hnk_setImageFromURL(url!)
 		}
 		
 		let likes = data[indexPath.row]["likes"]["count"]
