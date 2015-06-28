@@ -26,12 +26,6 @@ class TableViewCell: UITableViewCell {
 			
 			photoImageView.frame = bounds
 			
-			// White frame for photos
-//			photoImageView.frame.size.height = photoImageView.frame.size.height - 4
-//			photoImageView.frame.size.width = photoImageView.frame.size.width - 4
-//			photoImageView.frame.origin.x = photoImageView.frame.origin.x + 2
-//			photoImageView.frame.origin.y = photoImageView.frame.origin.y + 2
-			
 			photoImageView.contentMode = UIViewContentMode.ScaleAspectFit
 			contentView.addSubview(photoImageView)
 			
@@ -68,9 +62,9 @@ class TableViewCell: UITableViewCell {
 		label.text = "♥︎ \(likes)"
 		label.sizeToFit()
 		label.textColor = UIColor.darkGrayColor()
-		let likesViewWidth = (label.bounds.size.width + 40 >= 80) ? label.bounds.size.width + 40 : 80
 		let likesView = UIVisualEffectView(effect: UIBlurEffect(style: .ExtraLight)) as UIVisualEffectView
 		likesView.backgroundColor = UIColor(red:1, green:1, blue:1, alpha:0.4)
+		let likesViewWidth = (label.bounds.size.width + 20 >= 70) ? label.bounds.size.width + 20 : 70
 		likesView.frame = CGRectMake(0, 20, likesViewWidth, label.bounds.size.height + 20)
 		likesView.frame.origin.x = bounds.size.width - likesView.frame.size.width - 20
 		likesView.layer.cornerRadius = 10
@@ -78,38 +72,6 @@ class TableViewCell: UITableViewCell {
 		contentView.addSubview(likesView)
 		likesView.addSubview(label)
 		label.center = CGPointMake(likesView.bounds.size.width / 2, likesView.bounds.size.height / 2)
-	}
-	
-	override func awakeFromNib() {
-		let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("handleTap"))
-		tapGestureRecognizer.numberOfTapsRequired = 2;
-		contentView.addGestureRecognizer(tapGestureRecognizer)
-	}
-	
-	func handleTap() {
-		let window = UIApplication.sharedApplication().keyWindow
-		let coverView = UIView(frame: window!.frame)
-		coverView.backgroundColor = UIColor.blackColor()
-		window?.addSubview(coverView)
-		let pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: Selector("handlePinch"))
-		coverView.addGestureRecognizer(pinchGestureRecognizer)
-		
-		let imageView = UIImageView(frame: CGRectMake(0, 0, coverView.bounds.size.width, coverView.bounds.size.width))
-		imageView.center = coverView.center
-		let urlString = photoInfo["images"]["standard_resolution"]["url"].string
-		let url = NSURL(string: urlString!)
-		let data = NSData(contentsOfURL: url!)
-		imageView.image = UIImage(data: data!)
-		coverView.addSubview(imageView)
-	}
-	
-	func handlePinch() {
-		let window = UIApplication.sharedApplication().keyWindow
-
-		UIView.animateWithDuration(0.5, animations: {
-			let view = window?.subviews.last! as! UIView
-			view.alpha = 0
-		})
 	}
 }
 
