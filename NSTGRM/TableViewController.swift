@@ -27,14 +27,24 @@ class TableViewController: UITableViewController {
 	
 	// MARK: - Lifecycle
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+	override func viewDidLoad() {
+		super.viewDidLoad()
 		
+		// Add pull to refresh
 		refreshControl = UIRefreshControl()
 		refreshControl?.addTarget(self, action: "refreshData", forControlEvents: UIControlEvents.ValueChanged)
-
+		
+		// Define TableViewCell height
 		tableView.rowHeight = tableView.bounds.width / 2
 		tableView.separatorColor = UIColor.clearColor()
+		
+		// Add icon to NavBar
+		var titleView : UIImageView
+		let maxSize: CGFloat = 26
+		titleView = UIImageView(frame:CGRectMake(0, 0, maxSize, maxSize))
+		titleView.contentMode = .ScaleAspectFit
+		titleView.image = UIImage(named: "camera")
+		self.navigationItem.titleView = titleView
 		
 		getAccessTokenFromKeychain()
 	}
