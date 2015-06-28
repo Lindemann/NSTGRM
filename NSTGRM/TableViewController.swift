@@ -67,10 +67,20 @@ class TableViewController: UITableViewController {
 	
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! TableViewCell
-		cell.photoInfo = data[indexPath.row]
+		
+		if let urlString = data[indexPath.row]["images"]["standard_resolution"]["url"].string {
+			let url = NSURL(string: urlString)
+			cell.photoImageView.frame = CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height)
+			cell.photoImageView.hnk_setImageFromURL(url!)
+		}
+		
+		let likes = data[indexPath.row]["likes"]["count"]
+		cell.likesView.likes = likes.int!
+		
 		if indexPath.row == data.count - 1 && isLoadingData == false {
 			loadMorePhotos()
 		}
+		
 		return cell
 	}
 	
@@ -130,7 +140,7 @@ class TableViewController: UITableViewController {
 	func loadPhotos(var url: String? = nil, completionHandler: ((success: Bool) -> ()) = { (success) -> () in }) {
 		if url == nil {
 			if accessToken != nil {
-				//url = "https://api.instagram.com/v1/tags/mountain/media/recent?access_token=\(accessToken!)"
+				//url = "https://api.instagram.com/v1/tags/cat/media/recent?access_token=\(accessToken!)"
 				url = "https://api.instagram.com/v1/users/342262/media/recent/?access_token=\(accessToken!)"
 				//url = "https://api.instagram.com/v1/users/\(userID!)/media/recent/?access_token=\(accessToken!)"
 			} else {
