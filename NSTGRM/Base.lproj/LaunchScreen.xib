@@ -11,17 +11,17 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="Aoo-hE-w7G">
-                    <rect key="frame" x="120" y="120" width="240" height="240"/>
+                    <rect key="frame" x="150" y="150" width="180" height="180"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="240" id="dEe-DZ-jIN"/>
-                        <constraint firstAttribute="height" constant="240" id="dZC-ER-Ikw"/>
+                        <constraint firstAttribute="width" constant="180" id="hyo-Pv-wOi"/>
+                        <constraint firstAttribute="height" constant="180" id="jSQ-un-zcp"/>
                     </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="Aoo-hE-w7G" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ICQ-EC-z1G"/>
-                <constraint firstItem="Aoo-hE-w7G" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="s5N-60-o2d"/>
+                <constraint firstAttribute="centerY" secondItem="Aoo-hE-w7G" secondAttribute="centerY" id="5vl-8s-15k"/>
+                <constraint firstAttribute="centerX" secondItem="Aoo-hE-w7G" secondAttribute="centerX" id="d8o-nE-oGp"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

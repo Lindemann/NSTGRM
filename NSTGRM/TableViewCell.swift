@@ -79,6 +79,37 @@ class TableViewCell: UITableViewCell {
 		likesView.addSubview(label)
 		label.center = CGPointMake(likesView.bounds.size.width / 2, likesView.bounds.size.height / 2)
 	}
+	
+	override func awakeFromNib() {
+		let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("handleTap"))
+		tapGestureRecognizer.numberOfTapsRequired = 2;
+		contentView.addGestureRecognizer(tapGestureRecognizer)
+	}
+	
+	func handleTap() {
+		let window = UIApplication.sharedApplication().keyWindow
+		let coverView = UIView(frame: window!.frame)
+		coverView.backgroundColor = UIColor.blackColor()
+		window?.addSubview(coverView)
+		let pinchGestureRecognizer = UIPinchGestureRecognizer(target: self, action: Selector("handlePinch"))
+		coverView.addGestureRecognizer(pinchGestureRecognizer)
+		
+		let imageView = UIImageView(frame: CGRectMake(0, 0, coverView.bounds.size.width, coverView.bounds.size.width))
+		imageView.center = coverView.center
+		let urlString = photoInfo["images"]["standard_resolution"]["url"].string
+		let url = NSURL(string: urlString!)
+		let data = NSData(contentsOfURL: url!)
+		imageView.image = UIImage(data: data!)
+		coverView.addSubview(imageView)
+	}
+	
+	func handlePinch() {
+		let window = UIApplication.sharedApplication().keyWindow
 
+		UIView.animateWithDuration(0.5, animations: {
+			let view = window?.subviews.last! as! UIView
+			view.alpha = 0
+		})
+	}
 }
 
