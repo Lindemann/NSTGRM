@@ -66,7 +66,7 @@ class LikesView: UIVisualEffectView {
 		
 		let padding: CGFloat = 20
 		let minSize: CGFloat = 70
-		let labelSize = label.bounds.size.width + padding
+		let labelSize = label.bounds.size.width
 		let likesViewWidth = (labelSize + padding >= minSize) ? labelSize + padding : minSize
 		frame = CGRectMake(0, 20, likesViewWidth, label.bounds.size.height + padding)
 		

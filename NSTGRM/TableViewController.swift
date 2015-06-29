@@ -67,7 +67,7 @@ class TableViewController: UITableViewController {
 		let likes = data[indexPath.row]["likes"]["count"]
 		cell.likesView.likes = likes.int!
 		
-		if indexPath.row == data.count - 1 && isLoadingData == false {
+		if indexPath.row == data.count - 1 && !isLoadingData {
 			loadMorePhotos()
 		}
 		return cell
@@ -176,9 +176,9 @@ class TableViewController: UITableViewController {
 				// Cats
 				//url = "https://api.instagram.com/v1/tags/cat/media/recent?access_token=\(accessToken!)"
 				// Gernot
-				//url = "https://api.instagram.com/v1/users/342262/media/recent/?access_token=\(accessToken!)"
+				url = "https://api.instagram.com/v1/users/342262/media/recent/?access_token=\(accessToken!)"
 				// User
-				url = "https://api.instagram.com/v1/users/\(userID!)/media/recent/?access_token=\(accessToken!)"
+				//url = "https://api.instagram.com/v1/users/\(userID!)/media/recent/?access_token=\(accessToken!)"
 			} else {
 				instagramOAuth()
 				self.refreshControl?.endRefreshing()
