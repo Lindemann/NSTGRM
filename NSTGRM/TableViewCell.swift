@@ -37,7 +37,6 @@ class TableViewCell: UITableViewCell {
 		
 		contentView.addSubview(imageView!)
 		contentView.addSubview(likesView)
-		
 	}
 	
 	override func prepareForReuse() {
@@ -75,4 +74,3 @@ class LikesView: UIVisualEffectView {
 		label.center = CGPointMake(bounds.size.width / 2, bounds.size.height / 2)
 	}
 }
-
