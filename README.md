@@ -1,6 +1,6 @@
 # NSTGRM
 ## Simple photo browser for Instagram
-
+`Swift 1.2`, `Universal`, `iOS 8`
 ![http://i.imgur.com/tjOpD4f.jpg](http://i.imgur.com/tjOpD4f.jpg)
 
 Used frameworks:
