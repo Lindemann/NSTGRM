@@ -84,6 +84,90 @@ class TableViewController: UITableViewController {
 		return cell
 	}
 	
+	// MARK: - Fullscreen for images
+	
+	var fullscreenImageBackgroundView = UIView()
+	let animationDuration = 0.4
+	
+	override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+		let window = UIApplication.sharedApplication().keyWindow
+		fullscreenImageBackgroundView = UIVisualEffectView(effect: UIBlurEffect(style: .Dark)) as UIVisualEffectView
+		fullscreenImageBackgroundView.frame = window!.frame
+		fullscreenImageBackgroundView.backgroundColor = UIColor(red:0, green:0, blue:0, alpha:0.5)
+		
+		
+		let imageView = UIImageView(frame: CGRectMake(0, 0, fullscreenImageBackgroundView.bounds.size.width, fullscreenImageBackgroundView.bounds.size.width))
+		imageView.center = fullscreenImageBackgroundView.center
+		fullscreenImageBackgroundView.addSubview(imageView)
+		
+		if let urlString = data[indexPath.row]["images"]["standard_resolution"]["url"].string {
+			let url = NSURL(string: urlString)
+			imageView.hnk_setImageFromURL(url!)
+		}
+
+		let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("handleTap"))
+		fullscreenImageBackgroundView.addGestureRecognizer(tapGestureRecognizer)
+
+		fullscreenImageBackgroundView.frame.origin.y = window!.frame.size.height * 2
+		window?.addSubview(fullscreenImageBackgroundView)
+		
+		UIView.animateWithDuration(animationDuration, animations: {
+			self.fullscreenImageBackgroundView.frame.origin.y = window!.frame.origin.y
+			self.tableView.allowsSelection = false
+			}, completion: { finished in
+		})
+	}
+	
+	func handleTap() {
+		let window = UIApplication.sharedApplication().keyWindow
+		
+		UIView.animateWithDuration(animationDuration, animations: {
+			self.fullscreenImageBackgroundView.frame.origin.y = window!.frame.size.height * 2
+			}, completion: { finished in
+				self.fullscreenImageBackgroundView.removeFromSuperview()
+				self.tableView.allowsSelection = true
+		})
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// MARK: - Get Access to API and Fetching Data Stuff
 	
 	func getAccessTokenFromKeychain() {

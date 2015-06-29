@@ -16,20 +16,24 @@ class TableViewCell: UITableViewCell {
 	required init(coder aDecoder: NSCoder) {
 		likesView = LikesView(effect: UIBlurEffect(style: .ExtraLight)) as LikesView
 		super.init(coder: aDecoder)
+		initHelper()
 	}
 	
 	override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
 		likesView = LikesView(effect: UIBlurEffect(style: .ExtraLight)) as LikesView
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
+		initHelper()
+	}
+	
+	func initHelper() {
+		imageView?.clipsToBounds = true
+		imageView?.contentMode =  UIViewContentMode.ScaleAspectFill
 	}
 	
 	override func layoutSubviews() {
 		let marginToLeftCornerOfCell: CGFloat = 20
 		likesView.frame = CGRectMake(0, marginToLeftCornerOfCell, likesView.bounds.size.width, likesView.bounds.size.height)
 		likesView.frame.origin.x = contentView.bounds.size.width - likesView.frame.size.width - marginToLeftCornerOfCell
-		
-		imageView?.clipsToBounds = true
-		imageView?.contentMode =  UIViewContentMode.ScaleAspectFill
 		
 		contentView.addSubview(imageView!)
 		contentView.addSubview(likesView)
