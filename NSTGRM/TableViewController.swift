@@ -30,15 +30,15 @@ class TableViewController: UITableViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		// Add pull to refresh
+		// Pull to refresh
 		refreshControl = UIRefreshControl()
 		refreshControl?.addTarget(self, action: "refreshData", forControlEvents: UIControlEvents.ValueChanged)
 		
-		// Define TableViewCell height
+		// TableViewCell height
 		tableView.rowHeight = tableView.bounds.width / 2
 		tableView.separatorColor = UIColor.clearColor()
 		
-		// Add icon to NavBar
+		// Icon in NavBar
 		var titleView : UIImageView
 		let maxSize: CGFloat = 26
 		titleView = UIImageView(frame:CGRectMake(0, 0, maxSize, maxSize))
@@ -52,7 +52,7 @@ class TableViewController: UITableViewController {
 	// MARK: - Table view data source
 	
 	override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return data.count ?? 0
+		return data.count
 	}
 	
 	override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -118,7 +118,7 @@ class TableViewController: UITableViewController {
 		})
 	}
 	
-	// MARK: - Get Access to API and Fetching Data Stuff
+	// MARK: - Get access to API and fetching data stuff
 	
 	func getAccessTokenFromKeychain() {
 		let (dictionary, error) = Locksmith.loadDataForUserAccount(keychainAccountName)
